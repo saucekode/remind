@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-remind-task-table
+      author: chiamaka
+      changes:
+        - createTable:
+            tableName: rm_task
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: label
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: added_on
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: location
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: task_time
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

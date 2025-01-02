@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.xsd">
+
+    <!-- Local Repository -->
+    <!-- Optional. If not set, Maven uses the default location ~/.m2/repository -->
+    <localRepository>/Users/chiamakambah/.m2/repository</localRepository>
+
+    <!-- Mirrors -->
+    <!-- Mirrors define the locations where Maven will download dependencies from. -->
+    <mirrors>
+        <mirror>
+            <id>central</id>
+            <mirrorOf>central</mirrorOf>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </mirror>
+        <!-- Add more mirrors here as needed -->
+    </mirrors>
+
+    <!-- Servers -->
+    <!-- Configure authentication and settings for remote repositories -->
+    <servers>
+        <server>
+            <id>deployment-repo</id>
+            <username>${env.MAVEN_USERNAME}</username> <!-- or hard-code username -->
+            <password>${env.MAVEN_PASSWORD}</password> <!-- or hard-code password -->
+        </server>
+        <!-- Add other server credentials if necessary -->
+    </servers>
+
+    <!-- Proxies -->
+    <!-- If you are behind a proxy, configure it here -->
+<!--    <proxies>-->
+<!--        <proxy>-->
+<!--            <id>example-proxy</id>-->
+<!--            <active>true</active>-->
+<!--            <protocol>http</protocol>-->
+<!--            <host>proxy.example.com</host>-->
+<!--            <port>8080</port>-->
+<!--            <username>proxyuser</username>-->
+<!--            <password>somepassword</password>-->
+<!--            <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>-->
+<!--        </proxy>-->
+<!--        &lt;!&ndash; Add more proxies if needed &ndash;&gt;-->
+<!--    </proxies>-->
+
+    <!-- Profiles -->
+    <!-- Profiles allow you to customize settings for different environments -->
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>dev</id>-->
+<!--            <properties>-->
+<!--                <some.property>value</some.property>-->
+<!--                &lt;!&ndash; Other environment-specific properties &ndash;&gt;-->
+<!--            </properties>-->
+<!--        </profile>-->
+
+<!--        <profile>-->
+<!--            <id>prod</id>-->
+<!--            <properties>-->
+<!--                <some.property>production-value</some.property>-->
+<!--                &lt;!&ndash; Production-specific properties &ndash;&gt;-->
+<!--            </properties>-->
+<!--        </profile>-->
+
+<!--        &lt;!&ndash; Add more profiles as required &ndash;&gt;-->
+<!--    </profiles>-->
+
+    <!-- Active Profiles -->
+    <!-- Activate specific profiles for different environments -->
+    <activeProfiles>
+        <activeProfile>staging</activeProfile> <!-- Set default active profile -->
+        <!-- Add other active profiles if necessary -->
+    </activeProfiles>
+
+</settings>

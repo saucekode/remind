@@ -1,0 +1,5 @@
+# Default profile
+spring:
+  profiles:
+    active:
+      staging
