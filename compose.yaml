@@ -1,0 +1,44 @@
+volumes:
+  postgres:
+  pgadmin:
+
+services:
+  postgres:
+    container_name: remind_app_postgres
+    image: 'postgres:latest'
+    environment:
+      POSTGRES_DB: remind_db
+      POSTGRES_PASSWORD: sauceydglot
+      POSTGRES_USER: sauceglot
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - '5432'
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: remind_app_pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: saucekoder@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: unlimited
+      PGADMIN_LISTEN_PORT: 6060
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./docker_pgadmin_servers.json:/pgadmin4/servers.json
+    ports:
+      - '6060:6060'
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'postgres:5432:*:sauceglot:sauceydglot' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+
+  vault:
+    container_name: remind_app_vault
+    image: hashicorp/vault:latest
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: ${VAULT_TOKEN}
+    ports:
+        - "8200:8200"
